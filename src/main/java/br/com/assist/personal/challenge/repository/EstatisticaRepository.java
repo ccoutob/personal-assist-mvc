@@ -1,4 +1,7 @@
 package br.com.assist.personal.challenge.repository;
 
-public interface EstatisticaRepository {
+import br.com.assist.personal.challenge.model.Estatistica;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface EstatisticaRepository extends JpaRepository<Estatistica, Long> {
 }

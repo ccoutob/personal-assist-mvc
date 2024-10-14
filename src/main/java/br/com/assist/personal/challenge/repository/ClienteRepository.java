@@ -1,4 +1,7 @@
 package br.com.assist.personal.challenge.repository;
 
-public interface ClienteRepository {
+import br.com.assist.personal.challenge.model.Cliente;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 }
