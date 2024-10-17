@@ -20,7 +20,7 @@ public class Estatistica {
     @Id
     @GeneratedValue
     @Column(name = "ID_ESTATISTICA")
-    private Long codigo;
+    private Long id;
 
     @Column(name = "MED_CRESCIMENTO")
     private Integer mediaCrescimento; //Em porcentagem

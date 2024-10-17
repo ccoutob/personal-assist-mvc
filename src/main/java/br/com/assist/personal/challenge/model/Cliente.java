@@ -21,7 +21,7 @@ public class Cliente {
         @Id
         @GeneratedValue
         @Column(name = "ID_CLIENTE")
-        private Long codigo;
+        private Long id;
 
         //Coluna da tabela
         @Column(name = "NM_CLIENTE", length = 100, nullable = false)

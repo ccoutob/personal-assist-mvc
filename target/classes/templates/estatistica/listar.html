@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Listagem de Estatisticas</title>
+</head>
+<body>
+<div class="container" layout:fragment="conteudo">
+    <h1>Lista de Estatisticas</h1>
+    <div th:if="!${#strings.isEmpty(msg)}" class="alert alert-success">
+        <span th:text="${msg}"></span>
+    </div>
+    <table class="table table-striped">
+        <tr>
+            <th>Media crescimento</th>
+            <th>Crescimento mensal</th>
+            <th>Receita</th>
+            <th>Analise</th>
+        </tr>
+        <tr th:each="estatistica : ${status}">
+            <td th:text="${estatistica.mediaCrescimento}"></td>
+            <td th:text="${estatistica.crescimentoMensal}"></td>
+            <td th:text="${estatistica.receita}"></td>
+            <td th:text="${estatistica.analise}"></td>
+            <td>
+                <a th:href="@{/estatistica/editar/}+${estatistica.id}" class="btn btn-sm btn-primary">Editar</a>
+                <button th:onclick="|estatisticaId.value = ${estatistica.id}|" type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Excluir
+                </button>
+            </td>
+        </tr>
+    </table>
+
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Launch demo modal
+    </button>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Confirmação</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Deseja realmente excluir a Estatistica?
+                </div>
+                <div class="modal-footer">
+                    <form th:action="@{/estatistica/excluir}" method="post">
+                        <input type="hidden" id="estatisticaId" name="idStatus">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+                        <button type="submit" class="btn btn-danger">Sim</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

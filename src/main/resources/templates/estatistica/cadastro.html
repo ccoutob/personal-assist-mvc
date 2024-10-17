@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Estatisticas</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container" layout:fragment="conteudo">
+    <h1>Cadastro de Estatisticas</h1>
+    <div th:if="${not #strings.isEmpty(msg)}" class="alert alert-success">
+        <span th:text="${msg}"></span>
+    </div>
+    <form th:action="@{/estatistica/cadastrar}" method="post" th:object="${estatistica}">
+        <div class="mb-3">
+            <label class="form-label">MEDIA DE CRESCIMENTO</label>
+            <input type="number" th:field="*{mediaCrescimento}" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">CRESCIMENTO MENSAL</label>
+            <input type="number" th:field="*{crescimentoMensal}" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">RECEITA</label>
+            <input type="number" th:field="*{receita}" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">ANÁLISE</label>
+            <input type="text" th:field="*{analise}" class="form-control" required>
+        </div>
+        <button class="btn btn-success">Cadastrar</button>
+    </form>
+</div>
+</body>
+</html>
