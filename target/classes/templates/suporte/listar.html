@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Listagem de Suportes</title>
+</head>
+<body>
+<div class="container" layout:fragment="conteudo">
+    <h1>Lista de Feedbacks</h1>
+    <div th:if="!${#strings.isEmpty(msg)}" class="alert alert-success">
+        <span th:text="${msg}"></span>
+    </div>
+    <table class="table table-striped">
+        <tr>
+            <th>Descrição</th>
+            <th>Status</th>
+        </tr>
+        <tr th:each="suporte : ${status}">
+            <td th:text="${suporte.descricao}"></td>
+            <td th:text="${suporte.status}"></td>
+            <td>
+                <a th:href="@{/suporte/editar/}+${suporte.id}" class="btn btn-sm btn-primary">Editar</a>
+                <button th:onclick="|suporteId.value = ${suporte.id}|" type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Excluir
+                </button>
+            </td>
+        </tr>
+    </table>
+
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Launch demo modal
+    </button>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Confirmação</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Deseja realmente excluir o Suporte?
+                </div>
+                <div class="modal-footer">
+                    <form th:action="@{/suporte/excluir}" method="post">
+                        <input type="hidden" id="suporteId" name="idStatus">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+                        <button type="submit" class="btn btn-danger">Sim</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

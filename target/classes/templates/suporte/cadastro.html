@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Feedbacks</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container" layout:fragment="conteudo">
+    <h1>Cadastro de Suporte</h1>
+    <div th:if="${not #strings.isEmpty(msg)}" class="alert alert-success">
+        <span th:text="${msg}"></span>
+    </div>
+    <form th:action="@{/suporte/cadastrar}" method="post" th:object="${suporte}">
+        <div class="mb-3">
+            <label class="form-label">DESCRIÇÂO</label>
+            <input type="text" th:field="*{descricao}" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">STATUS</label>
+            <select th:field="*{status}" class="form-control">
+                <option th:each="assist :${valorStatus}" th:value="${assist}" th:text="${assist.label}"></option>
+            </select>
+        </div>
+        <button class="btn btn-success">Cadastrar</button>
+    </form>
+</div>
+</body>
+</html>

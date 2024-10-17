@@ -20,7 +20,7 @@ public class Feedback {
     @Id
     @GeneratedValue
     @Column(name = "ID_FEEDBACK")
-    private Long codigo;
+    private Long id;
 
     @Column(name = "NOTA_FEEDBACK", nullable = false)
     private Integer nota;

@@ -20,7 +20,7 @@ public class Suporte {
     @Id
     @GeneratedValue
     @Column(name = "ID_SUPORTE")
-    private Long codigo;
+    private Long id;
 
     @Column(name = "DESC_PROBLEMA", length = 255, nullable = false)
     private String descricao;
