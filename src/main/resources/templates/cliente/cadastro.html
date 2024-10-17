@@ -17,14 +17,23 @@
         <div class="mb-3">
             <label class="form-label">NOME</label>
             <input type="text" th:field="*{nome}" class="form-control" required>
+            <p th:if="${#fields.hasErrors('nome')}" class="text text-danger"
+               th:errors="*{nome}"></p>
+        </div>
         </div>
         <div class="mb-3">
             <label class="form-label">EMAIL</label>
             <input type="email" th:field="*{email}" class="form-control" required>
+            <p th:if="${#fields.hasErrors('email')}" class="text text-danger"
+               th:errors="*{email}"></p>
+        </div>
         </div>
         <div class="mb-3">
             <label class="form-label">CPF</label>
             <input type="text" th:field="*{cpf}" class="form-control" required>
+            <p th:if="${#fields.hasErrors('cpf')}" class="text text-danger"
+               th:errors="*{cpf}"></p>
+        </div>
         </div>
         <button class="btn btn-success">Cadastrar</button>
     </form>

@@ -1,6 +1,8 @@
 package br.com.assist.personal.challenge.model.suporte;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,6 +24,8 @@ public class Suporte {
     @Column(name = "ID_SUPORTE")
     private Long id;
 
+    @Size(max = 255, min = 10)
+    @NotBlank(message = "Descricao é obrigatório")
     @Column(name = "DESC_PROBLEMA", length = 255, nullable = false)
     private String descricao;
 

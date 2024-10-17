@@ -3,10 +3,12 @@ package br.com.assist.personal.challenge.controller;
 import br.com.assist.personal.challenge.model.suporte.StatusTicket;
 import br.com.assist.personal.challenge.model.suporte.Suporte;
 import br.com.assist.personal.challenge.repository.SuporteRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -45,7 +47,14 @@ public class SuporteController {
 
     @PostMapping("editar")
     @Transactional
-    public String editar(Suporte suporte, RedirectAttributes redirectAttributes){
+    public String editar(@Valid Suporte suporte,
+                         BindingResult bindingResult,
+                         RedirectAttributes redirectAttributes,
+                         Model model){
+        if (bindingResult.hasErrors()){
+            model.addAttribute("valorStatus", StatusTicket.values());
+            return "suporte/cadastro"; //nome da página
+        }
         suporteRepository.save(suporte);
         redirectAttributes.addFlashAttribute("msg", "suporte atualizado");
         return "redirect:/suporte/listar";
@@ -53,7 +62,14 @@ public class SuporteController {
 
     @PostMapping("cadastrar")
     @Transactional
-    public String cadastrar(Suporte suporte, RedirectAttributes redirectAttributes){
+    public String cadastrar(@Valid Suporte suporte,
+                            BindingResult bindingResult,
+                            RedirectAttributes redirectAttributes,
+                            Model model){
+        if (bindingResult.hasErrors()){
+            model.addAttribute("valorStatus", StatusTicket.values());
+            return "suporte/cadastro"; //nome da página
+        }
         suporteRepository.save(suporte);
         redirectAttributes.addFlashAttribute("msg", "suporte registrado!");
         return "redirect:/suporte/cadastrar";

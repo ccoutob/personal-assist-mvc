@@ -11,17 +11,28 @@
     <h1>Edição de Clientes</h1>
     <form th:action="@{/cliente/editar}" method="post" th:object="${cliente}">
         <input type="hidden" th:field="*{id}">
+        <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+            <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
+        </div>
         <div class="mb-3">
             <label class="form-label">Nome</label>
             <input type="text" th:field="*{nome}" class="form-control">
+            <p th:if="${#fields.hasErrors('nome')}" class="text text-danger"
+               th:errors="*{nome}"></p>
         </div>
         <div class="mb-3">
             <label class="form-label">Email</label>
-            <input type="text" th:field="*{email}" class="form-control">
+            <input type="email" th:field="*{email}" class="form-control">
+            <p th:if="${#fields.hasErrors('email')}" class="text text-danger"
+               th:errors="*{email}"></p>
+        </div>
         </div>
         <div class="mb-3">
             <label class="form-label">Cpf</label>
             <input type="text" th:field="*{cpf}" class="form-control">
+            <p th:if="${#fields.hasErrors('cpf')}" class="text text-danger"
+               th:errors="*{cpf}"></p>
+        </div>
         </div>
         <button class="btn btn-success">Editar</button>
     </form>

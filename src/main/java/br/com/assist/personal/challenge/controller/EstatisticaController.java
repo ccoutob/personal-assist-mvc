@@ -1,11 +1,14 @@
 package br.com.assist.personal.challenge.controller;
 
 import br.com.assist.personal.challenge.model.Estatistica;
+import br.com.assist.personal.challenge.model.Feedback;
 import br.com.assist.personal.challenge.repository.EstatisticaRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,7 +44,12 @@ public class EstatisticaController {
 
     @PostMapping("editar")
     @Transactional
-    public String editar(Estatistica estatistica, RedirectAttributes redirectAttributes){
+    public String editar(@Valid Estatistica estatistica, BindingResult bindingResult,
+                         RedirectAttributes redirectAttributes,
+                         Model model){
+        if (bindingResult.hasErrors()){
+            return "estatistica/editar";
+        }
         estatisticaRepository.save(estatistica);
         redirectAttributes.addFlashAttribute("msg", "Estatistica atualizada");
         return "redirect:/estatistica/listar";
@@ -49,7 +57,12 @@ public class EstatisticaController {
 
     @PostMapping("cadastrar")
     @Transactional
-    public String cadastrar(Estatistica estatistica, RedirectAttributes redirectAttributes){
+    public String cadastrar(@Valid Estatistica estatistica, BindingResult bindingResult,
+                            RedirectAttributes redirectAttributes,
+                            Model model){
+        if (bindingResult.hasErrors()){
+            return "estatistica/editar";
+        }
         estatisticaRepository.save(estatistica);
         redirectAttributes.addFlashAttribute("msg", "Estatistica registrada!");
         return "redirect:/estatistica/cadastrar";

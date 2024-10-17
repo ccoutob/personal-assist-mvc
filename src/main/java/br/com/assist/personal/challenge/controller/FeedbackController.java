@@ -2,10 +2,12 @@ package br.com.assist.personal.challenge.controller;
 
 import br.com.assist.personal.challenge.model.Feedback;
 import br.com.assist.personal.challenge.repository.FeedbackRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,7 +43,12 @@ public class FeedbackController {
 
     @PostMapping("editar")
     @Transactional
-    public String editar(Feedback feedback, RedirectAttributes redirectAttributes){
+    public String editar(@Valid Feedback feedback, BindingResult bindingResult,
+                         RedirectAttributes redirectAttributes,
+                         Model model){
+        if (bindingResult.hasErrors()){
+            return "feedback/editar";
+        }
         feedbackRepository.save(feedback);
         redirectAttributes.addFlashAttribute("msg", "feedback atualizado");
         return "redirect:/feedback/listar";
@@ -49,7 +56,12 @@ public class FeedbackController {
 
     @PostMapping("cadastrar")
     @Transactional
-    public String cadastrar(Feedback feedback, RedirectAttributes redirectAttributes){
+    public String cadastrar(@Valid Feedback feedback, BindingResult bindingResult,
+                            RedirectAttributes redirectAttributes,
+                            Model model){
+        if (bindingResult.hasErrors()){
+            return "feedback/editar";
+        }
         feedbackRepository.save(feedback);
         redirectAttributes.addFlashAttribute("msg", "feedback registrado!");
         return "redirect:/feedback/cadastrar";

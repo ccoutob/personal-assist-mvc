@@ -11,17 +11,26 @@
     <h1>Edição de Feedback</h1>
     <form th:action="@{/feedback/editar}" method="post" th:object="${feedback}">
         <input type="hidden" th:field="*{id}">
+        <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+            <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
+        </div>
         <div class="mb-3">
             <label class="form-label">NOTA</label>
             <input type="number" th:field="*{nota}" class="form-control" required>
+            <p th:if="${#fields.hasErrors('nota')}" class="text text-danger"
+               th:errors="*{nota}"></p>
         </div>
         <div class="mb-3">
             <label class="form-label">FEEDBACK POSITIVO</label>
             <input type="text" th:field="*{positivo}" class="form-control" required>
+            <p th:if="${#fields.hasErrors('positivo')}" class="text text-danger"
+               th:errors="*{positivo}"></p>
         </div>
         <div class="mb-3">
             <label class="form-label">FEEDBACK NEGATIVO</label>
             <input type="text" th:field="*{negativo}" class="form-control" required>
+            <p th:if="${#fields.hasErrors('negativo')}" class="text text-danger"
+               th:errors="*{negativo}"></p>
         </div>
         <button class="btn btn-success">Editar</button>
     </form>

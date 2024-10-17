@@ -1,11 +1,14 @@
 package br.com.assist.personal.challenge.controller;
 
 import br.com.assist.personal.challenge.model.Cliente;
+import br.com.assist.personal.challenge.model.Estatistica;
 import br.com.assist.personal.challenge.repository.ClienteRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,7 +44,12 @@ public class ClienteController {
 
     @PostMapping("editar")
     @Transactional
-    public String editar(Cliente cliente, RedirectAttributes redirectAttributes){
+    public String editar(@Valid Cliente cliente, BindingResult bindingResult,
+                         RedirectAttributes redirectAttributes,
+                         Model model){
+        if (bindingResult.hasErrors()){
+            return "cliente/editar";
+        }
         clienteRepository.save(cliente);
         redirectAttributes.addFlashAttribute("msg", "Cliente atualizado");
         return "redirect:/cliente/listar";
@@ -49,7 +57,12 @@ public class ClienteController {
 
     @PostMapping("cadastrar")
     @Transactional
-    public String cadastrar(Cliente cliente, RedirectAttributes redirectAttributes){
+    public String cadastrar(@Valid Cliente cliente, BindingResult bindingResult,
+                            RedirectAttributes redirectAttributes,
+                            Model model){
+        if (bindingResult.hasErrors()){
+            return "cliente/editar";
+        }
         clienteRepository.save(cliente);
         redirectAttributes.addFlashAttribute("msg", "Cliente registrado!");
         return "redirect:/cliente/cadastrar";
