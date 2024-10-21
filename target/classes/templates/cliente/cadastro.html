@@ -20,13 +20,11 @@
             <p th:if="${#fields.hasErrors('nome')}" class="text text-danger"
                th:errors="*{nome}"></p>
         </div>
-        </div>
         <div class="mb-3">
             <label class="form-label">EMAIL</label>
             <input type="email" th:field="*{email}" class="form-control" required>
             <p th:if="${#fields.hasErrors('email')}" class="text text-danger"
                th:errors="*{email}"></p>
-        </div>
         </div>
         <div class="mb-3">
             <label class="form-label">CPF</label>
@@ -34,6 +32,29 @@
             <p th:if="${#fields.hasErrors('cpf')}" class="text text-danger"
                th:errors="*{cpf}"></p>
         </div>
+        <div class="mb-3">
+            <label class="form-label">MÉDIA DE CRESCIMENTO</label>
+            <input type="number" th:field="*{estatistica.mediaCrescimento}" class="form-control" required>
+            <p th:if="${#fields.hasErrors('estatistica.mediaCrescimento')}" class="text text-danger"
+               th:errors="*{estatistica.mediaCrescimento}"></p>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">CRESCIMENTO MENSAL</label>
+            <input type="number" th:field="*{estatistica.crescimentoMensal}" class="form-control" required>
+            <p th:if="${#fields.hasErrors('estatistica.crescimentoMensal')}" class="text text-danger"
+               th:errors="*{estatistica.crescimentoMensal}"></p>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">RECEITA</label>
+            <input type="number" th:field="*{estatistica.receita}" class="form-control" required>
+            <p th:if="${#fields.hasErrors('estatistica.receita')}" class="text text-danger"
+               th:errors="*{estatistica.receita}"></p>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">ANÁLISE</label>
+            <input type="text" th:field="*{estatistica.analise}" class="form-control" required>
+            <p th:if="${#fields.hasErrors('estatistica.analise')}" class="text text-danger"
+               th:errors="*{estatistica.analise}"></p>
         </div>
         <button class="btn btn-success">Cadastrar</button>
     </form>

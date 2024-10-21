@@ -42,4 +42,8 @@ public class Cliente {
         @NotBlank(message = "CPF do cliente é obrigatório")
         @Column(name = "NR_CPF", length = 30, unique = true, nullable = false)
         private String cpf;
+
+        @OneToOne(cascade = CascadeType.ALL)
+        @JoinColumn(name = "ID_ESTATISTICA")
+        private Estatistica estatistica;
 }

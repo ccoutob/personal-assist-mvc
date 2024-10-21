@@ -20,13 +20,11 @@
             <p th:if="${#fields.hasErrors('mediaCrescimento')}" class="text text-danger"
                th:errors="*{mediaCrescimento}"></p>
         </div>
-        </div>
         <div class="mb-3">
             <label class="form-label">CRESCIMENTO MENSAL</label>
             <input type="number" th:field="*{crescimentoMensal}" class="form-control" required>
             <p th:if="${#fields.hasErrors('crescimentoMensal')}" class="text text-danger"
                th:errors="*{crescimentoMensal}"></p>
-        </div>
         </div>
         <div class="mb-3">
             <label class="form-label">RECEITA</label>
@@ -34,13 +32,11 @@
             <p th:if="${#fields.hasErrors('receita')}" class="text text-danger"
                th:errors="*{receita}"></p>
         </div>
-        </div>
         <div class="mb-3">
             <label class="form-label">ANÁLISE</label>
             <input type="text" th:field="*{analise}" class="form-control" required>
             <p th:if="${#fields.hasErrors('analise')}" class="text text-danger"
                th:errors="*{analise}"></p>
-        </div>
         </div>
         <button class="btn btn-success">Cadastrar</button>
     </form>

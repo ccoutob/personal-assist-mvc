@@ -38,4 +38,8 @@ public class Feedback {
     @NotBlank(message = "Feedback negativo é obrigatório")
     @Column(name = "NEGATIVO_FEEDBACK", nullable = false, length = 255)
     private String negativo;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ID_CLIENTE")
+    private Cliente cliente;
 }

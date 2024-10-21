@@ -20,20 +20,17 @@
             <p th:if="${#fields.hasErrors('nota')}" class="text text-danger"
                th:errors="*{nota}"></p>
         </div>
-        </div>
         <div class="mb-3">
             <label class="form-label">FEEDBACK POSITIVO</label>
             <input type="text" th:field="*{positivo}" class="form-control" required>
             <p th:if="${#fields.hasErrors('positivo')}" class="text text-danger"
                th:errors="*{positivo}"></p>
         </div>
-        </div>
         <div class="mb-3">
             <label class="form-label">FEEDBACK NEGATIVO</label>
             <input type="text" th:field="*{negativo}" class="form-control" required>
             <p th:if="${#fields.hasErrors('negativo')}" class="text text-danger"
                th:errors="*{negativo}"></p>
-        </div>
         </div>
         <button class="btn btn-success">Cadastrar</button>
     </form>
