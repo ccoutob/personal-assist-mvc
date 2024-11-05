@@ -50,8 +50,12 @@ Nosso sistema fornece serviços de recomendação de negócios juntamente com um
 
 <h1 name="objetivo">🎯 Funcionalidades do projeto adicionadas na Sprint 4</h1>
 <li>Nossa aplicação pode ter interação com o usuário de uma maneira mais simples com o mvc</li>
+<li>Classes ligadas umas as outras para realizaçao da inserçao de dados</li>
 <li>Telas interativas para nossos usuários navegarem e acessarem seus dados</li>
 <li>Facilidade para o usuário, garantindo uma ótima experiência</li>
+
+<br>
+❗❗ Para mais informações, veja o vídeo explicativo de nosso sistema <a href=https://youtu.be/e5NDcMOh6DY> AQUI </a> ❗❗
 
 ### 🧑🏻‍💻 Autor 
 > Cauã Couto Basques - Turma 2TDSS
